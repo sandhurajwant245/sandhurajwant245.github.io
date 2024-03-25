@@ -1,101 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rajwant Kaur - Mobile Developer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #666;
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <h1>Rajwant Kaur</h1>
-        <p>A passionate mobile developer</p>
-        <button onclick="viewProjects()">View Projects</button>
-    </div>
+def generate_portfolio(projects):
+    html = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Portfolio</title>
+    </head>
+    <body>
+        <h1>My Portfolio</h1>
+    """
+    for project in projects:
+        html += f"""
+        <div>
+            <h2>{project['name']}</h2>
+            <p>{project['description']}</p>
+            <p><strong>Technologies:</strong> {project['technologies']}</p>
+            <p><a href="{project['github_link']}">GitHub</a></p>
+        </div>
+        """
+    html += """
+    </body>
+    </html>
+    """
+    return html
 
-    <script>
-        function viewProjects() {
-            alert('Redirecting to projects page!');
-            // You can replace the URL with your actual projects page
-            window.location.href = 'https://github.com/rajwantkaur27';
-        }
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rajwant Kaur</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-            font-size: 2em;
-        }
-        p {
-            color: #666;
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <h1>Rajwant Kaur</h1>
-        <p>A passionate mobile developer.</p>
-        <p>Check out my <a href="https://github.com/rajwantkaur27">GitHub</a>.</p>
-    </div>
-</body>
-</html>
+projects = [
+    {"name": "Project 1", "description": "Description of Project 1", "technologies": "Python, Flask", "github_link": "https://github.com/user/project1"},
+    {"name": "Project 2", "description": "Description of Project 2", "technologies": "JavaScript, React", "github_link": "https://github.com/user/project2"}
+]
 
+portfolio_html = generate_portfolio(projects)
+
+with open("portfolio.html", "w") as file:
+    file.write(portfolio_html)
+
+print("Portfolio generated successfully.")
